@@ -14,8 +14,10 @@ const app = express();
 
 // middlewares setup
 app.use(cors({
-  origin: "*",
+  origin: 'https://lead-management-frontend-sage.vercel.app',
   credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 app.use(express.json());
 app.use(cookieParser());
