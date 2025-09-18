@@ -14,7 +14,7 @@ const app = express();
 
 // middlewares setup
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'https://lead-management-frontend-sage.vercel.app/',
+  origin: "*",
   credentials: true,
 }));
 app.use(express.json());
