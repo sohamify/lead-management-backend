@@ -52,10 +52,12 @@ res.cookie('jwt', token, {
       httpOnly: true,
       secure: true, // Required for HTTPS on Render
       sameSite: 'None', // Cross-origin (Vercel to Render)
-      domain: '.onrender.com', // Broad domain for Render
       path: '/', // Available for all routes
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days in milliseconds
     });
+
+    console.log('Login successful, token set in cookie');
+    
 
     res.status(200).json({ id: user._id, email: user.email });
   } catch (error) {
