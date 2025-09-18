@@ -48,11 +48,13 @@ const login = async (req, res) => {
 
     const token = generateToken(user._id);
 
-    res.cookie('jwt', token, {
+res.cookie('jwt', token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
-      maxAge: 24 * 60 * 60 * 1000,
+      secure: true, // Required for HTTPS on Render
+      sameSite: 'None', // Cross-origin (Vercel to Render)
+      domain: '.onrender.com', // Broad domain for Render
+      path: '/', // Available for all routes
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days in milliseconds
     });
 
     res.status(200).json({ id: user._id, email: user.email });
